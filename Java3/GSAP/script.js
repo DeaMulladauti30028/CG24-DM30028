@@ -12,5 +12,16 @@ const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
+cube.position.x = -2;
 // Set the camera position
 camera.position.z = 5;
+
+// Animate the cube with GSAP
+gsap.to(cube.position, { duration: 2, x: 2, ease: "power1.inOut", repeat: -1, yoyo: true });
+gsap.to(cube.rotation, { duration: 2, y: Math.PI * 2, ease: "power1.inOut", repeat: -1, yoyo: true });
+
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+animate();
