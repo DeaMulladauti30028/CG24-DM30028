@@ -59,7 +59,40 @@ scene.add(camera);
 
 
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(800, 600)
+renderer.setSize(sizes.width, sizes.height)
 document.getElementById("scene").appendChild(renderer.domElement);
 
-renderer.render(scene, camera)
+camera.lookAt(sphere.position);
+
+window.addEventListener('resize', (event) =>
+{
+    camera.aspect = renderer.domElement.width / renderer.domElement.height;
+    renderer.setSize(renderer.domElement.width, renderer.domElement.height)
+
+    camera.updateProjectionMatrix();
+});
+
+window.addEventListener('keydown',(event) =>
+{
+  switch(event.key){
+    case 'b':
+      camera.lookAt(box.position);
+      break;
+    case 'c':
+      camera.lookAt(cylinder.position);
+      break;
+    case 's':
+      camera.lookAt(sphere.position);
+      break;
+  }
+  camera.updateProjectionMatrix();
+});
+
+const animate = () =>{
+  requestAnimationFrame(animate);
+  //camera.fov -= 1;
+  camera.updateProjectionMatrix();
+  renderer.render(scene,camera)
+}
+
+animate();

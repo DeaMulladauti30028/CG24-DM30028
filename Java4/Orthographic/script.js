@@ -63,4 +63,16 @@ renderer.setSize(800, 600)
 document.getElementById("scene").appendChild(renderer.domElement);
 
 
+const animate =() =>{
+
+  requestAnimationFrame(animate);
+  cylinder.position.x += .01;
+  console.log(cylinder.position);
+  renderer.render(scene,camera);
+
+}
+
+animate();
+
+
 renderer.render(scene, camera)
