@@ -9,8 +9,17 @@ const scene = new THREE.Scene();
 const loader = new GLTFLoader();
 loader.load('/carnival_entrance/scene.gltf', function (gltf) {
     const model = gltf.scene;
-    model.position.set(0, 0.1, 34); // Move the model above the ground
-    model.scale.set(1.5, 1.5, 1.5); // Resize if needed
+    model.position.set(0, 0.1, 34); 
+    model.scale.set(1.5, 1.5, 1.5); 
+    scene.add(model);
+}, undefined, function (error) {
+    console.error('Error loading model:', error);
+});
+
+loader.load('/stylized_carnival_booth/scene.gltf', function (gltf) {
+    const model = gltf.scene;
+    model.position.set(0, 0.1, 34); 
+    model.scale.set(1.5, 1.5, 1.5); 
     scene.add(model);
 }, undefined, function (error) {
     console.error('Error loading model:', error);
